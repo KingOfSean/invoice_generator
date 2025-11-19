@@ -5,6 +5,17 @@
   align-items: center;
 }
 
+.centered-flex-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.centered-flex-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
 .btn-ameripro-red {
     --bs-btn-color: #ffffff;

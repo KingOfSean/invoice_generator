@@ -14,6 +14,7 @@ export default function CustomDatePicker({ label, value, handleChange, size = "s
         slotProps={{
             textField: {
                 size: size,
+                fullWidth: true,
             },
         }}
       />

@@ -61,49 +61,55 @@ export default function InvoiceForm({ setShowFormDialog, setTableRows, }) {
 
   return (
     <form onSubmit={handleCreateJob}>
-      <div className='invoice-inputs'>
-        <CustomDatePicker
-          label="Job Date"
-          value={jobDate}
-          handleChange={handleJobDate}
-        />
-        <TextField
-          required
-          className="invoice-job-description"
-          variant="outlined"
-          label="Job Description"
-          value={jobDescription}
-          onInput={handleJobDescription}
-          size='small'
-        />
-        <TextField
-          label="Hours Worked"
-          className="invoice-hours-worked"
-          type="number"
-          variant="outlined"
-          value={hoursWorked}
-          onInput={handleHoursWorked}
-          size='small'
-        />
-        <PriceFormatInput 
-          label="Hourly Rate"
-          value={hourlyRate}
-          handleValueChange={handleHourlyRatePrice}
-        />
-        {/* <PriceFormatInput 
-          label="Total Amount"
-          value={totalAmount}
-          // handleValueChange={handleHourlyRatePrice}
-          readOnly={true}
-        /> */}
+      <div className='invoice-inputs-main-container'>
+        <div className='d-flex gap-3 flex-wrap'>
+          <div className='invoice-inputs-small'>
+            <CustomDatePicker
+              label="Job Date"
+              value={jobDate}
+              handleChange={handleJobDate}
+            />
+          </div>
+          <div className='invoice-inputs-small'>
+            <TextField
+              label="Hours Worked"
+              className="invoice-hours-worked"
+              type="number"
+              value={hoursWorked}
+              onInput={handleHoursWorked}
+              variant="outlined"
+              size='small'
+              fullWidth
+            />
+          </div>
+          <div className='invoice-inputs-small'>
+            <PriceFormatInput 
+              label="Hourly Rate"
+              value={hourlyRate}
+              handleValueChange={handleHourlyRatePrice}
+            />
+          </div>
+        </div>
+        <div className='align-self-stretch'>
+          <div className=''>
+            <TextField
+              label="Job Description"
+              className="invoice-job-description"
+              value={jobDescription}
+              onInput={handleJobDescription}
+              variant="outlined"
+              size='small'
+              fullWidth
+            />
+          </div>
+        </div>
+        <button
+          type="submit"
+          className="btn btn-ameripro-blue align-self-stretch"
+        >
+          Add Job
+        </button>
       </div>
-
-      <button
-        type="submit"
-        className="btn btn-ameripro-blue"
-      >
-        Add Job
-      </button>
     </form>
   );
 }
