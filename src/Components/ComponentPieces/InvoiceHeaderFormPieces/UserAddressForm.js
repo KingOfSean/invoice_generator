@@ -1,6 +1,6 @@
 import React from "react";
 import { TextField, Box, MenuItem } from "@mui/material";
-import { usStates } from "../../CustomData/usStates";
+import { usStates } from "../../../CustomData/usStates";
 
 export default function UserAddressForm({
   usersHeaderName,
@@ -45,7 +45,7 @@ export default function UserAddressForm({
           label="City"
           size="small"
           fullWidth
-          sx={{ flex: 2 }}
+          sx={{ flex: 2,  minWidth: 210}}
           value={usersAddressCity}
           onChange={(e) => setUsersAddressCity(e.target.value)}
         />

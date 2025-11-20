@@ -1,6 +1,6 @@
 import React from "react";
 import { TextField, Box, MenuItem } from "@mui/material";
-import { usStates } from "../../CustomData/usStates";
+import { usStates } from "../../../CustomData/usStates";
 
 export default function BillToAddressForm({
   billToHeaderName,
@@ -47,7 +47,7 @@ export default function BillToAddressForm({
           label="City"
           size="small"
           fullWidth
-          sx={{ flex: 2 }}
+          sx={{ flex: 2, minWidth: 210 }}
           value={billToAddressCity}
           onChange={(e) => setBillToAddressCity(e.target.value)}
         />

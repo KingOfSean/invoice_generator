@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import '../ComponentStyles/Home.css';
+import './ComponentStyles/Home.css';
 import InvoiceForm from './InvoiceForm';
 import InvoiceTable from './InvoiceTable';
-import CustomDialog from '../UsefulTools/CustomDialog';
+import CustomDialog from './UsefulTools/CustomDialog';
 import InvoiceHeaderForm from './InvoiceHeaderForm';
 import { useAppStateVariables } from '../StateContext/AppStateVariablesContext';
 
@@ -52,7 +52,7 @@ export default function Home() {
         <div className='container'>
             <div className='d-flex flex-column gap-3'>
                 <InvoiceHeaderForm />
-                <InvoiceTable tableRows={tableRows} setShowFormDialog={setShowFormDialog} />
+                <InvoiceTable tableRows={tableRows} setTableRows={setTableRows} setShowFormDialog={setShowFormDialog} />
                 <CustomDialog showDialog={showFormDialog} handleClose={handleFormDialog} title={'Add New Job'} content={<InvoiceForm setShowFormDialog={setShowFormDialog} setTableRows={setTableRows} />}/>
             </div>
         </div>

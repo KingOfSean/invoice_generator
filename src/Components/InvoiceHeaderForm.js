@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import "../ComponentStyles/InvoiceHeaderForm.css";
+import "./ComponentStyles/InvoiceHeaderForm.css";
 import { useAppStateVariables } from '../StateContext/AppStateVariablesContext';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
-import CustomDialog from '../UsefulTools/CustomDialog';
-import InvoiceHeaderAddressFormTabs from '../ComponentPieces/InvoiceHeaderFormPieces/InvoiceHeaderAddressFormTabs';
-import InvoiceHeaderDateNameTable from '../ComponentPieces/InvoiceHeaderFormPieces/InvoiceHeaderDateNameTable';
+import CustomDialog from './UsefulTools/CustomDialog';
+import InvoiceHeaderAddressFormTabs from './ComponentPieces/InvoiceHeaderFormPieces/InvoiceHeaderAddressFormTabs';
+import InvoiceHeaderDateNameTable from './ComponentPieces/InvoiceHeaderFormPieces/InvoiceHeaderDateNameTable';
 
 export default function InvoiceHeaderForm({ handleSubmit }) {
     const {

@@ -37,6 +37,20 @@ table.align-table-text-end tr th:first-child {
   text-align: left;
 }
 
+.ellipsis-cell {
+  max-width: 220px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}
+
+.ellipsis-expanded {
+  white-space: normal;
+  overflow: visible;
+}
+
+
 .btn-ameripro-red {
     --bs-btn-color: #ffffff;
     --bs-btn-bg: #c62828;

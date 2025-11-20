@@ -1,19 +1,24 @@
 import React, { useState, useEffect } from 'react';
-import "../ComponentStyles/InvoiceForm.css";
+import "./ComponentStyles/InvoiceForm.css";
 import { TextField } from "@mui/material";
-import PriceFormatInput from '../UsefulTools/PriceFormatInput';
-import CustomDatePicker from '../UsefulTools/CustomDatePicker';
+import PriceFormatInput from './UsefulTools/PriceFormatInput';
+import CustomDatePicker from './UsefulTools/CustomDatePicker';
 
 export default function InvoiceForm({ setShowFormDialog, setTableRows, }) {
-  const [jobDate, setJobDate] = useState(null);
+  const [jobStartDate, setJobStartDate] = useState(null);
+  const [jobEndDate, setJobEndDate] = useState(null);
   const [jobDescription, setJobDescription] = useState('');
   const [hoursWorked, setHoursWorked] = useState('');
   const [hourlyRate, setHourlyRate] = useState('');
   const [totalAmount, setTotalAmount] = useState(0);
   const [disabled, setDisabled] = useState(true);
 
-  const handleJobDate = (newDate) => {
-    setJobDate(newDate)
+  const handleJobStartDate = (newDate) => {
+    setJobStartDate(newDate)
+  }
+
+  const handleJobEndDate = (newDate) => {
+    setJobEndDate(newDate)
   }
 
   const handleJobDescription = (e) => {
@@ -29,7 +34,8 @@ export default function InvoiceForm({ setShowFormDialog, setTableRows, }) {
   }
 
   const resetInputs = () => {
-    setJobDate(null);
+    setJobStartDate(null);
+    setJobEndDate(null);
     setJobDescription('');
     setHoursWorked('');
     setHourlyRate('');
@@ -44,7 +50,8 @@ export default function InvoiceForm({ setShowFormDialog, setTableRows, }) {
       const jobTotal = hours * rate;
       const jobRow = { 
           id: nextId,
-          date: jobDate ? jobDate.format('DD-MMM-YY') : '',
+          startDate: jobStartDate,
+          endDate: jobEndDate,
           description: jobDescription,
           hours: hoursWorked,
           rate: hourlyRate,
@@ -62,7 +69,8 @@ export default function InvoiceForm({ setShowFormDialog, setTableRows, }) {
 
   const handleDisabled = () => {
     const allFilled =
-      jobDate !== null &&
+      jobStartDate !== null &&
+      jobEndDate !== null &&
       jobDescription !== '' &&
       hoursWorked !== '' &&
       hourlyRate !== '';
@@ -73,7 +81,8 @@ export default function InvoiceForm({ setShowFormDialog, setTableRows, }) {
   useEffect(() => {
     handleDisabled()
   }, [
-      jobDate,
+      jobStartDate,
+      jobEndDate,
       jobDescription,
       hoursWorked,
       hourlyRate,
@@ -83,17 +92,26 @@ export default function InvoiceForm({ setShowFormDialog, setTableRows, }) {
   return (
     <form onSubmit={handleCreateJob}>
       <div className='invoice-inputs-main-container'>
-        <div className='d-flex gap-3 flex-wrap'>
+        <div className='d-flex gap-3'>
           <div className='invoice-inputs-small'>
             <CustomDatePicker
-              label="Job Date"
-              value={jobDate}
-              handleChange={handleJobDate}
+              label="Start Date"
+              value={jobStartDate}
+              handleChange={handleJobStartDate}
             />
           </div>
           <div className='invoice-inputs-small'>
+            <CustomDatePicker
+              label="End Date"
+              value={jobEndDate}
+              handleChange={handleJobEndDate}
+            />
+          </div>
+        </div>
+        <div className='d-flex w-100 gap-3'>
+          <div className='invoice-inputs-ex-small'>
             <TextField
-              label="Hours Worked"
+              label="Hours"
               className="invoice-hours-worked"
               type="number"
               value={hoursWorked}
@@ -103,9 +121,9 @@ export default function InvoiceForm({ setShowFormDialog, setTableRows, }) {
               fullWidth
             />
           </div>
-          <div className='invoice-inputs-small'>
+          <div>
             <PriceFormatInput 
-              label="Hourly Rate"
+              label="Rate"
               value={hourlyRate}
               handleValueChange={handleHourlyRatePrice}
             />
