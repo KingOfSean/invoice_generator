@@ -5,6 +5,11 @@
   align-items: center;
 }
 
+.custom-container {
+  padding-left: 3rem;
+  padding-right: 3rem;
+}
+
 .centered-flex-row {
   display: flex;
   justify-content: center;

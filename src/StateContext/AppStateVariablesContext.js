@@ -22,6 +22,8 @@ export function AppStateVariablesProvider({ children }) {
     const [billToAddressCity, setBillToAddressCity] = useState('');
     const [billToAddressState, setBillToAddressState] = useState('');
     const [billToAddressZip, setBillToAddressZip] = useState('');
+    const [paymentTermsText, setPaymentTermsText] = useState('Payment due within 14 days from invoice date.');
+    const [paymentMethodsText, setPaymentMethodsText] = useState('Check or ACH. If mailing, please remit payment to the address listed above. For ACH please reachout for account details.');
 
     return (
         <AppStateVariablesContext.Provider value={{ 
@@ -40,6 +42,8 @@ export function AppStateVariablesProvider({ children }) {
             billToAddressCityContext: [billToAddressCity, setBillToAddressCity],
             billToAddressStateContext: [billToAddressState, setBillToAddressState],
             billToAddressZipContext: [billToAddressZip, setBillToAddressZip],
+            paymentTermsTextContext: [paymentTermsText, setPaymentTermsText],
+            paymentMethodsTextContext: [paymentMethodsText, setPaymentMethodsText],
          }}>
             {children}
          </AppStateVariablesContext.Provider>

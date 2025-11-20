@@ -16,8 +16,8 @@ export default function InvoiceTable({ tableRows, setTableRows, setShowFormDialo
     }, [tableRows]);
 
     return (
-        <div className='container'>
-            <div style={{ overflowX: 'auto', width: '100%'}}>
+        <div className='px-2 px-sm-5'>
+            <div style={{ overflowX: 'auto', width: '100%', marginBottom: '1rem'}}>
                 <table className='table table-bordered table-striped table-hover align-table-text-center'>
                     <thead className="tableHead">
                         <tr>

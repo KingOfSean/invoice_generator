@@ -68,7 +68,7 @@ export default function InvoiceHeaderForm({ handleSubmit }) {
     }, []);
 
     return (
-        <div className='container'>
+        <div className='px-2 px-sm-5'>
             <div className='d-flex flex-column gap-3'>
                 <Card>
                     <CardContent>
