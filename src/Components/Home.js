@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import './ComponentStyles/Home.css';
+import { useAppStateVariables } from '../StateContext/AppStateVariablesContext';
 import InvoiceForm from './InvoiceForm';
 import InvoiceTable from './InvoiceTable';
 import CustomDialog from './UsefulTools/CustomDialog';
+import CustomTitleDivider from './UsefulTools/CustomTitleDivider';
 import InvoiceHeaderForm from './InvoiceHeaderForm';
-import { useAppStateVariables } from '../StateContext/AppStateVariablesContext';
 
 export default function Home() {
     const {
@@ -51,8 +52,11 @@ export default function Home() {
     return (
         <div className='container'>
             <div className='d-flex flex-column gap-3'>
+                <CustomTitleDivider title={'Invoice Header'} titleColor={'#22356f'} fontSize={'1.7rem'} />
                 <InvoiceHeaderForm />
+                <CustomTitleDivider title={'Invoice Jobs'} titleColor={'#22356f'} fontSize={'1.7rem'} />
                 <InvoiceTable tableRows={tableRows} setTableRows={setTableRows} setShowFormDialog={setShowFormDialog} />
+                <CustomTitleDivider title={'Invoice Footer'} titleColor={'#22356f'} fontSize={'1.7rem'} />
                 <CustomDialog showDialog={showFormDialog} handleClose={handleFormDialog} title={'Add New Job'} content={<InvoiceForm setShowFormDialog={setShowFormDialog} setTableRows={setTableRows} />}/>
             </div>
         </div>
