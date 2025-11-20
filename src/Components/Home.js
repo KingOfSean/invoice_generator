@@ -49,10 +49,12 @@ export default function Home() {
     }, []);
 
     return (
-        <div id='mainHomeLayout'>
-            <InvoiceHeaderForm />
-            <InvoiceTable tableRows={tableRows} setShowFormDialog={setShowFormDialog} />
-            <CustomDialog showDialog={showFormDialog} handleClose={handleFormDialog} title={'Add New Job'} content={<InvoiceForm setShowFormDialog={setShowFormDialog} setTableRows={setTableRows} />}/>
+        <div className='container'>
+            <div className='d-flex flex-column gap-3'>
+                <InvoiceHeaderForm />
+                <InvoiceTable tableRows={tableRows} setShowFormDialog={setShowFormDialog} />
+                <CustomDialog showDialog={showFormDialog} handleClose={handleFormDialog} title={'Add New Job'} content={<InvoiceForm setShowFormDialog={setShowFormDialog} setTableRows={setTableRows} />}/>
+            </div>
         </div>
     );
 }

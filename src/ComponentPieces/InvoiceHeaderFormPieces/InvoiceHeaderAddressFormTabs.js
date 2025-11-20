@@ -1,28 +1,31 @@
 import React, { useEffect, useState } from "react";
 import { Tabs, Tab, Box } from "@mui/material";
-
+import { useAppStateVariables } from "../../StateContext/AppStateVariablesContext";
+import InvoiceDateNameForm from "./InvoiceDateNameForm";
 import UserAddressForm from "./UserAddressForm";
 import BillToAddressForm from "./BillToAddressForm";
-import { useAppStateVariables } from "../StateContext/AppStateVariablesContext";
 
-export default function InvoiceHeaderAddressFormTabs() {
-    const {
-        usersHeaderNameContext,
-        usersAddressStreetContext,
-        usersAddressStreet2Context,
-        usersAddressCityContext,
-        usersAddressStateContext,
-        usersAddressZipContext,
-        billToHeaderNameContext,
-        billToAddressStreetContext,
-        billToAddressStreet2Context,
-        billToAddressCityContext,
-        billToAddressStateContext,
-        billToAddressZipContext,
-    } = useAppStateVariables();
-  const [tab, setTab] = useState('user-info');
+export default function InvoiceHeaderAddressFormTabs({ setHeaderAddressDialog }) {
+  const {
+      invoiceNameContext,
+      invoiceDateContext,
+      usersHeaderNameContext,
+      usersAddressStreetContext,
+      usersAddressStreet2Context,
+      usersAddressCityContext,
+      usersAddressStateContext,
+      usersAddressZipContext,
+      billToHeaderNameContext,
+      billToAddressStreetContext,
+      billToAddressStreet2Context,
+      billToAddressCityContext,
+      billToAddressStateContext,
+      billToAddressZipContext,
+  } = useAppStateVariables();
 
-  // Unpack the actual states & setters
+  const [invoiceName, setInvoiceName] = invoiceNameContext;
+  const [invoiceDate, setInvoiceDate] = invoiceDateContext;
+
   const [usersHeaderName, setUserHeaderName] = usersHeaderNameContext;
   const [usersAddressStreet, setUsersAddressStreet] = usersAddressStreetContext;
   const [usersAddressStreet2, setUsersAddressStreet2] = usersAddressStreet2Context;
@@ -37,6 +40,7 @@ export default function InvoiceHeaderAddressFormTabs() {
   const [billToAddressState, setBillToAddressState] = billToAddressStateContext;
   const [billToAddressZip, setBillToAddressZip] = billToAddressZipContext;
 
+  const [tab, setTab] = useState('main-info');
   const [disabled, setDisabled] = useState(true);
 
   const handleTabChange = (event, newValue) => {
@@ -45,25 +49,29 @@ export default function InvoiceHeaderAddressFormTabs() {
   }
 
   const handleDisabled = () => {
-  const allFilled =
-    usersHeaderName !== '' &&
-    usersAddressStreet !== '' &&
-    usersAddressCity !== '' &&
-    usersAddressState !== '' &&
-    usersAddressZip !== '' &&
-    billToHeaderName !== '' &&
-    billToAddressStreet !== '' &&
-    billToAddressCity !== '' &&
-    billToAddressState !== '' &&
-    billToAddressZip !== '';
+    const allFilled =
+      invoiceName !== '' &&
+      invoiceDate !== null &&
+      usersHeaderName !== '' &&
+      usersAddressStreet !== '' &&
+      usersAddressCity !== '' &&
+      usersAddressState !== '' &&
+      usersAddressZip !== '' &&
+      billToHeaderName !== '' &&
+      billToAddressStreet !== '' &&
+      billToAddressCity !== '' &&
+      billToAddressState !== '' &&
+      billToAddressZip !== '';
 
-  setDisabled(!allFilled);
+    setDisabled(!allFilled);
 };
 
 
   useEffect(() => {
     handleDisabled();
   }, [
+    invoiceName,
+    invoiceDate,
     usersHeaderName,
     usersAddressStreet,
     usersAddressCity,
@@ -79,11 +87,22 @@ export default function InvoiceHeaderAddressFormTabs() {
   return (
     <Box sx={{ width: "100%" }}>
       <Tabs variant="fullWidth" value={tab} onChange={handleTabChange} centered>
+        <Tab label="Main Info"  value="main-info"/>
         <Tab label="Your Info"  value="user-info"/>
-        <Tab label="Bill To" value="bill-info" />
+        <Tab label="Billing Info" value="bill-info" />
       </Tabs>
 
       {/* TAB 1 */}
+      <div className="mt-3" style={{ display: tab === "main-info" ? "flex" : "none" }} >
+        <InvoiceDateNameForm
+          invoiceName={invoiceName}
+          setInvoiceName={setInvoiceName}
+          invoiceDate={invoiceDate}
+          setInvoiceDate={setInvoiceDate}
+        />
+      </div>
+
+      {/* TAB 2 */}
       <div className="mt-3" style={{ display: tab === "user-info" ? "flex" : "none" }} >
         <UserAddressForm
           usersHeaderName={usersHeaderName}
@@ -101,7 +120,7 @@ export default function InvoiceHeaderAddressFormTabs() {
         />
       </div>
 
-      {/* TAB 2 */}
+      {/* TAB 3 */}
       <div className="mt-3" style={{ display: tab === "bill-info" ? "flex" : "none" }} >
         <BillToAddressForm
           billToHeaderName={billToHeaderName}
@@ -119,7 +138,15 @@ export default function InvoiceHeaderAddressFormTabs() {
         />
       </div>
 
-      <button disabled={disabled} className="btn btn-ameripro-blue">Create</button>
+      <div className="d-flex w-100 mt-4">
+        <button 
+          disabled={disabled} 
+          className="btn btn-ameripro-blue flex-fill"
+          onClick={() => setHeaderAddressDialog(false)}
+        >
+          Done
+        </button>
+      </div>
     </Box>
   );
 }

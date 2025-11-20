@@ -18,7 +18,7 @@ export default function InvoiceTable({ tableRows, setShowFormDialog, }) {
 
     return (
         <div>
-            <table className='table table-bordered table-striped table-hover'>
+            <table className='table table-bordered table-striped table-hover align-table-text-center'>
                 <thead className="tableHead">
                     <tr>
                         <th>Description of Work</th>
@@ -44,7 +44,7 @@ export default function InvoiceTable({ tableRows, setShowFormDialog, }) {
                     }
                     <tr>
                         <td colSpan="3"></td>
-                        <td className="text-end fw-bold">Total</td>
+                        <td className="fw-bold">Total</td>
                         <td className="fw-bold">{priceFormatter(grandTotal)}</td>
                     </tr>
                 </tbody>

@@ -10,6 +10,7 @@ export default function InvoiceForm({ setShowFormDialog, setTableRows, }) {
   const [hoursWorked, setHoursWorked] = useState('');
   const [hourlyRate, setHourlyRate] = useState('');
   const [totalAmount, setTotalAmount] = useState(0);
+  const [disabled, setDisabled] = useState(true);
 
   const handleJobDate = (newDate) => {
     setJobDate(newDate)
@@ -59,6 +60,26 @@ export default function InvoiceForm({ setShowFormDialog, setTableRows, }) {
     setShowFormDialog(false);
   }
 
+  const handleDisabled = () => {
+    const allFilled =
+      jobDate !== null &&
+      jobDescription !== '' &&
+      hoursWorked !== '' &&
+      hourlyRate !== '';
+
+    setDisabled(!allFilled);
+  }
+
+  useEffect(() => {
+    handleDisabled()
+  }, [
+      jobDate,
+      jobDescription,
+      hoursWorked,
+      hourlyRate,
+    ]
+  )
+
   return (
     <form onSubmit={handleCreateJob}>
       <div className='invoice-inputs-main-container'>
@@ -104,6 +125,7 @@ export default function InvoiceForm({ setShowFormDialog, setTableRows, }) {
           </div>
         </div>
         <button
+        disabled={disabled}
           type="submit"
           className="btn btn-ameripro-blue align-self-stretch"
         >

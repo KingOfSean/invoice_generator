@@ -17,6 +17,26 @@
   align-items: center;
 }
 
+.align-table-text-center {
+  text-align: center;
+}
+
+table.align-table-text-center tr td:first-child {
+  text-align: left;
+}
+
+table.align-table-text-center thead tr th:first-child {
+  text-align: left;
+}
+
+.align-table-text-end {
+  text-align: end;
+}
+
+table.align-table-text-end tr th:first-child {
+  text-align: left;
+}
+
 .btn-ameripro-red {
     --bs-btn-color: #ffffff;
     --bs-btn-bg: #c62828;

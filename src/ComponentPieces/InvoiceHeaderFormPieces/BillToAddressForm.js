@@ -1,5 +1,6 @@
 import React from "react";
-import { TextField, Box } from "@mui/material";
+import { TextField, Box, MenuItem } from "@mui/material";
+import { usStates } from "../../CustomData/usStates";
 
 export default function BillToAddressForm({
   billToHeaderName,
@@ -18,7 +19,7 @@ export default function BillToAddressForm({
   return (
     <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
       <TextField
-        label="Bill To Name / Header"
+        label="Client / Company Name"
         size="small"
         fullWidth
         value={billToHeaderName}
@@ -51,12 +52,19 @@ export default function BillToAddressForm({
           onChange={(e) => setBillToAddressCity(e.target.value)}
         />
         <TextField
+          select
           label="State"
           size="small"
-          sx={{ width: 90 }}
+          sx={{ width: 85 }}
           value={billToAddressState}
           onChange={(e) => setBillToAddressState(e.target.value)}
-        />
+        >
+          {usStates.map((state) => (
+            <MenuItem key={state.id} value={state.abbr}>
+              {state.abbr}
+            </MenuItem>
+          ))}
+        </TextField>
         <TextField
           label="ZIP"
           size="small"

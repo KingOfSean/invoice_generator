@@ -1,5 +1,6 @@
 import React from "react";
-import { TextField, Box } from "@mui/material";
+import { TextField, Box, MenuItem } from "@mui/material";
+import { usStates } from "../../CustomData/usStates";
 
 export default function UserAddressForm({
   usersHeaderName,
@@ -18,13 +19,12 @@ export default function UserAddressForm({
   return (
     <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
       <TextField
-        label="Your Name / Header"
+        label="Your / Company Name"
         size="small"
         fullWidth
         value={usersHeaderName}
         onChange={(e) => setUserHeaderName(e.target.value)}
       />
-
       <TextField
         label="Street Address"
         size="small"
@@ -32,7 +32,6 @@ export default function UserAddressForm({
         value={usersAddressStreet}
         onChange={(e) => setUsersAddressStreet(e.target.value)}
       />
-
       <TextField
         label="Street Address 2"
         size="small"
@@ -50,15 +49,20 @@ export default function UserAddressForm({
           value={usersAddressCity}
           onChange={(e) => setUsersAddressCity(e.target.value)}
         />
-
         <TextField
+          select
           label="State"
           size="small"
-          sx={{ width: 90 }}
+          sx={{ width: 85 }}
           value={usersAddressState}
           onChange={(e) => setUsersAddressState(e.target.value)}
-        />
-
+        >
+          {usStates.map((state) => (
+            <MenuItem key={state.id} value={state.abbr}>
+              {state.abbr}
+            </MenuItem>
+          ))}
+        </TextField>
         <TextField
           label="ZIP"
           size="small"

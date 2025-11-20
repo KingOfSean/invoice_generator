@@ -8,6 +8,8 @@ export function useAppStateVariables() {
 
 export function AppStateVariablesProvider({ children }) {
     const [tableRows, setTableRows] = useState([]);
+    const [invoiceName, setInvoiceName] = useState('');
+    const [invoiceDate, setInvoiceDate] = useState(null);
     const [usersHeaderName, setUserHeaderName] = useState('');
     const [usersAddressStreet, setUsersAddressStreet] = useState('');
     const [usersAddressStreet2, setUsersAddressStreet2] = useState('');
@@ -24,6 +26,8 @@ export function AppStateVariablesProvider({ children }) {
     return (
         <AppStateVariablesContext.Provider value={{ 
             tableRowsContext: [tableRows, setTableRows],
+            invoiceNameContext: [invoiceName, setInvoiceName],
+            invoiceDateContext: [invoiceDate, setInvoiceDate],
             usersHeaderNameContext: [usersHeaderName, setUserHeaderName],
             usersAddressStreetContext: [usersAddressStreet, setUsersAddressStreet],
             usersAddressStreet2Context: [usersAddressStreet2, setUsersAddressStreet2],
